@@ -2,12 +2,32 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ramin Ghorbani — Barber</title>
 <meta name="description" content="Ramin Ghorbani — Barbier für Präzisionsschnitte, Fades & modernen Herrenschnitt.">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#17181A">
+<link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ramin Ghorbani">
+
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div class="scroll-rail" aria-hidden="true">
+  <svg class="scissors" id="scissors" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle class="blade top" cx="4" cy="6" r="2.1" stroke="currentColor" stroke-width="1.6"/>
+    <circle class="blade bottom" cx="4" cy="18" r="2.1" stroke="currentColor" stroke-width="1.6"/>
+    <path class="blade top" d="M5.6 7.4L20 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <path class="blade bottom" d="M5.6 16.6L20 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+</div>
 
 <header class="nav">
   <div class="container">
@@ -41,7 +61,7 @@ GHORBANI</h1>
 <section class="about" id="about">
   <div class="container">
     <div class="eyebrow" data-i18n="about_title">Über mich</div>
-    <p class="about-text" data-i18n="about_text">
+    <p class="about-text reveal" data-i18n="about_text">
       Ich bin Ramin Ghorbani, Barbier mit Fokus auf präzise Fades, klare Konturen und modernen Herrenschnitt.
       Jeder Schnitt wird individuell auf Kopfform, Haarstruktur und Stil abgestimmt.
     </p>
@@ -55,7 +75,7 @@ GHORBANI</h1>
       <span class="eyebrow" data-i18n="services_kicker">PREISE AUF ANFRAGE</span>
     </div>
 
-    <div class="service-grid">
+    <div class="service-grid reveal">
       <div class="service-card">
         <div class="service-top">
           <span class="service-name" data-i18n="service_normal_name">Normal</span>
@@ -78,10 +98,16 @@ GHORBANI</h1>
 <section class="gallery" id="gallery">
   <div class="container">
     <div class="gallery-head">
-      <h2 class="section-title" data-i18n="gallery_title">Galerie</h2>
-      <p class="gallery-sub" data-i18n="gallery_sub">Eine Auswahl aktueller Arbeiten</p>
+      <div>
+        <h2 class="section-title" data-i18n="gallery_title">Galerie</h2>
+        <p class="gallery-sub" data-i18n="gallery_sub">Eine Auswahl aktueller Arbeiten</p>
+      </div>
+      <div class="gallery-hint">
+        <span data-i18n="gallery_hint">Zum Entdecken wischen</span>
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5H14M14 5L10 1M14 5L10 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
     </div>
-    <div class="gallery-grid">
+    <div class="gallery-scroll" id="galleryScroll">
       <div class="gframe"><img src="assets/img/gallery-01.jpg" loading="lazy" alt="Barber work sample 1"></div>
       <div class="gframe"><img src="assets/img/gallery-02.jpg" loading="lazy" alt="Barber work sample 2"></div>
       <div class="gframe"><img src="assets/img/gallery-03.jpg" loading="lazy" alt="Barber work sample 3"></div>
