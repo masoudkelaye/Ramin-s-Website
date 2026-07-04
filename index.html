@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramin Ghorbani — Barber</title>
+<meta name="description" content="Ramin Ghorbani — Barbier für Präzisionsschnitte, Fades & modernen Herrenschnitt.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="container">
+    <div class="brand">RAMIN&nbsp;GHORBANI</div>
+    <ul class="nav-links">
+      <li><a href="#home" data-i18n="nav_home">Start</a></li>
+      <li><a href="#services" data-i18n="nav_services">Leistungen</a></li>
+      <li><a href="#gallery" data-i18n="nav_gallery">Galerie</a></li>
+      <li><a href="#booking" data-i18n="nav_booking">Termin</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
+    </ul>
+    <div class="nav-right">
+      <select class="lang-select" id="langSelect" aria-label="Sprache / Language"></select>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-media"><img src="assets/img/hero.jpg" alt="Ramin Ghorbani Barber Portfolio"></div>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div class="eyebrow" data-i18n="hero_kicker">BARBIER · PRÄZISIONSSCHNITTE</div>
+      <h1 class="hero-title" data-i18n="hero_title">RAMIN
+GHORBANI</h1>
+      <p class="hero-sub" data-i18n="hero_sub">Klare Linien. Saubere Fades. Handwerk, dem man vertraut.</p>
+      <a href="#booking" class="btn btn-primary" data-i18n="hero_cta">Termin buchen</a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container">
+    <div class="eyebrow" data-i18n="about_title">Über mich</div>
+    <p class="about-text" data-i18n="about_text">
+      Ich bin Ramin Ghorbani, Barbier mit Fokus auf präzise Fades, klare Konturen und modernen Herrenschnitt.
+      Jeder Schnitt wird individuell auf Kopfform, Haarstruktur und Stil abgestimmt.
+    </p>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-head">
+      <h2 class="section-title" data-i18n="services_title">Leistungen</h2>
+      <span class="eyebrow" data-i18n="services_kicker">PREISE AUF ANFRAGE</span>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-top">
+          <span class="service-name" data-i18n="service_normal_name">Normal</span>
+          <span class="service-time"><span data-i18n-num="30">30</span> <span data-i18n="min">Min.</span></span>
+        </div>
+        <p class="service-desc" data-i18n="service_normal_desc">Waschen, Schneiden, Styling</p>
+      </div>
+
+      <div class="service-card vip">
+        <div class="service-top">
+          <span class="service-name" data-i18n="service_vip_name">VIP</span>
+          <span class="service-time"><span data-i18n-num="60">60</span> <span data-i18n="min">Min.</span></span>
+        </div>
+        <p class="service-desc" data-i18n="service_vip_desc">Ausführliche Beratung, Schnitt, Bartpflege & Styling</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-head">
+      <h2 class="section-title" data-i18n="gallery_title">Galerie</h2>
+      <p class="gallery-sub" data-i18n="gallery_sub">Eine Auswahl aktueller Arbeiten</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gframe"><img src="assets/img/gallery-01.jpg" loading="lazy" alt="Barber work sample 1"></div>
+      <div class="gframe"><img src="assets/img/gallery-02.jpg" loading="lazy" alt="Barber work sample 2"></div>
+      <div class="gframe"><img src="assets/img/gallery-03.jpg" loading="lazy" alt="Barber work sample 3"></div>
+      <div class="gframe"><img src="assets/img/gallery-04.jpg" loading="lazy" alt="Barber work sample 4"></div>
+      <div class="gframe"><img src="assets/img/gallery-05.jpg" loading="lazy" alt="Barber work sample 5"></div>
+      <div class="gframe"><img src="assets/img/gallery-06.jpg" loading="lazy" alt="Barber work sample 6"></div>
+      <div class="gframe"><img src="assets/img/gallery-07.jpg" loading="lazy" alt="Barber work sample 7"></div>
+      <div class="gframe"><img src="assets/img/gallery-08.jpg" loading="lazy" alt="Barber work sample 8"></div>
+      <div class="gframe"><img src="assets/img/gallery-09.jpg" loading="lazy" alt="Barber work sample 9"></div>
+      <div class="gframe"><img src="assets/img/gallery-10.jpg" loading="lazy" alt="Barber work sample 10"></div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="container">
+    <div class="booking-inner">
+      <div>
+        <h2 class="section-title" data-i18n="booking_title">Termin buchen</h2>
+        <p class="booking-meta" data-i18n="booking_note">Buchung läuft über Cal.com — direkt mit Google Kalender verbunden, inkl. automatischer Erinnerung aufs Handy.</p>
+        <div class="hours-badge">🕐 <span data-i18n="booking_sub">Öffnungszeiten: täglich 09:00 – 19:00 Uhr</span></div>
+      </div>
+
+      <!--
+        CAL.COM SETUP (for Ramin):
+        1. Create a free account at https://cal.com
+        2. Connect your Google Calendar under Settings → Apps.
+        3. Create two Event Types:
+             - "Normal"  → duration 30 min
+             - "VIP"     → duration 60 min
+        4. Set your availability to Daily, 09:00–19:00.
+        5. Turn on notifications (email + push via the Cal.com mobile app,
+           or SMS reminders in event settings) so you get notified on your phone.
+        6. Replace YOUR-USERNAME below with your Cal.com username to go live.
+      -->
+      <div id="calBooking" class="cal-embed">
+        <div>
+          <p data-i18n="booking_placeholder">Buchungskalender wird hier eingebettet.</p>
+          <code>&lt;!-- Cal.com embed goes here — see comment in index.html --&gt;
+&lt;div data-cal-link="YOUR-USERNAME/normal"&gt;&lt;/div&gt;</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <h2 class="section-title" data-i18n="contact_title">Kontakt</h2>
+    <div class="contact-inner">
+      <a class="contact-card" href="https://wa.me/4915566971317" target="_blank" rel="noopener">
+        <span class="contact-icon">💬</span>
+        <span>
+          <span class="contact-label" data-i18n="contact_whatsapp">WhatsApp schreiben</span>
+          <div class="contact-value">+49 155 6697 1317</div>
+        </span>
+      </a>
+      <a class="contact-card" href="https://www.instagram.com/ramin_zd1000?igsh=ZTJ1ZmY5NWV2anl6" target="_blank" rel="noopener">
+        <span class="contact-icon">📷</span>
+        <span>
+          <span class="contact-label" data-i18n="contact_instagram">Instagram ansehen</span>
+          <div class="contact-value">@ramin_zd1000</div>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>RAMIN GHORBANI</div>
+    <div><span data-i18n="footer_rights">Alle Rechte vorbehalten.</span> © <span id="year"></span></div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
