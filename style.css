@@ -1,24 +1,27 @@
 /* ==========================================================================
    Ramin Ghorbani — Barber Site
-   Design tokens
-   Background: warm off-white / Ink: near-black / Accent: barber-pole red
-   Display face: Bebas Neue (shop-signage character)
+   Design tokens — Black & Gold, luxury barbershop
+   Background: rich black / Ink: warm ivory / Accent: polished gold
+   Display face: Bebas Neue (shop-signage character, now in gold foil)
    Body face: Inter / Utility face: IBM Plex Mono (ticket / receipt feel)
-   Signature: oval "mirror-frame" crop on portfolio images —
-   a direct callback to the oval mirrors seen throughout the shop photos.
+   Signature: oval "mirror-frame" crop on portfolio images, finished with
+   a fine gold rim — like the gilded mirrors in an old-world barbershop.
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap');
 
 :root{
-  --bg:        #FAF9F6;
-  --bg-soft:   #F1EFE9;
-  --ink:       #17181A;
-  --ink-soft:  #5B5E63;
-  --line:      #E3E0D8;
-  --accent:    #B23A2E;
-  --accent-ink:#7A2620;
-  --white:     #FFFFFF;
+  --bg:        #0A0A0B;
+  --bg-soft:   #17150F;
+  --surface:   #141210;
+  --ink:       #F1E9D8;
+  --ink-soft:  #A79E8C;
+  --line:      #34301F;
+  --accent:    #D4AF37;
+  --accent-bright:#EBD79A;
+  --accent-ink:#A8842A;
+  --on-accent: #0A0A0B;
+  --white:     var(--surface);
 
   --display: 'Bebas Neue', sans-serif;
   --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -64,7 +67,7 @@ section{ padding:88px 0; border-top:1px solid var(--line); }
 /* ---------- Nav ---------- */
 .nav{
   position:sticky; top:0; z-index:50;
-  background:rgba(250,249,246,.86); backdrop-filter:blur(10px);
+  background:rgba(10,10,11,.82); backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
 .nav .container{
@@ -73,6 +76,7 @@ section{ padding:88px 0; border-top:1px solid var(--line); }
 }
 .brand{
   font-family:var(--display); font-size:22px; letter-spacing:.03em;
+  color:var(--accent);
 }
 .nav-links{ display:flex; gap:28px; list-style:none; margin:0; padding:0; }
 .nav-links a{
@@ -116,18 +120,20 @@ section{ padding:88px 0; border-top:1px solid var(--line); }
   background:linear-gradient(180deg, rgba(23,24,26,.05) 0%, rgba(23,24,26,.15) 45%, rgba(23,24,26,.86) 100%);
 }
 .hero-content{
-  position:relative; z-index:1; color:var(--white);
+  position:relative; z-index:1; color:var(--ink);
   width:100%; padding:0 24px 72px;
 }
 .hero-inner{ max-width:var(--container); margin:0 auto; }
-.hero-content .eyebrow{ color:#E9C6C0; }
+.hero-content .eyebrow{ color:var(--accent-bright); }
 .hero-title{
   font-family:var(--display); font-size:clamp(64px,13vw,140px);
   line-height:.86; letter-spacing:.01em; margin:14px 0 18px;
   white-space:pre-line;
+  background:linear-gradient(135deg, var(--accent-bright) 0%, var(--accent) 45%, var(--accent-ink) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
 }
 .hero-sub{
-  font-size:clamp(15px,2vw,19px); max-width:480px; color:#EDECE8;
+  font-size:clamp(15px,2vw,19px); max-width:480px; color:var(--ink-soft);
   margin:0 0 34px;
 }
 .btn{
@@ -137,8 +143,8 @@ section{ padding:88px 0; border-top:1px solid var(--line); }
   padding:15px 26px; border-radius:999px; border:1px solid transparent;
   cursor:pointer; transition:transform .15s ease, background .15s ease;
 }
-.btn-primary{ background:var(--accent); color:var(--white); }
-.btn-primary:hover{ background:var(--accent-ink); transform:translateY(-1px); }
+.btn-primary{ background:var(--accent); color:var(--on-accent); }
+.btn-primary:hover{ background:var(--accent-bright); transform:translateY(-1px); }
 .btn-outline{ background:transparent; border-color:currentColor; }
 
 /* ---------- About ---------- */
@@ -155,10 +161,13 @@ section{ padding:88px 0; border-top:1px solid var(--line); }
 }
 @media (max-width:700px){ .service-grid{ grid-template-columns:1fr; } }
 .service-card{
-  background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
   padding:32px; position:relative; overflow:hidden;
 }
-.service-card.vip{ background:var(--ink); color:var(--white); border-color:var(--ink); }
+.service-card.vip{
+  background:linear-gradient(155deg, var(--accent-bright), var(--accent) 55%, var(--accent-ink));
+  color:var(--on-accent); border-color:transparent;
+}
 .service-top{ display:flex; justify-content:space-between; align-items:flex-start; }
 .service-name{ font-family:var(--display); font-size:34px; letter-spacing:.01em; }
 .service-time{
@@ -203,7 +212,7 @@ section{ padding:88px 0; border-top:1px solid var(--line); }
   overflow:hidden; position:relative;
   border:1px solid var(--line);
   scroll-snap-align:center;
-  box-shadow:0 1px 0 var(--white) inset;
+  box-shadow:0 0 0 1px rgba(212,175,55,.28) inset;
   transition:transform .35s cubic-bezier(.22,.68,0,1.2), opacity .35s ease, box-shadow .35s ease;
   opacity:0; transform:translateY(18px) scale(.8);
   will-change:transform, opacity;
@@ -214,6 +223,8 @@ section{ padding:88px 0; border-top:1px solid var(--line); }
   width:100%; height:100%; object-fit:cover;
   transition:transform .5s ease;
 }
+.gframe:hover{ box-shadow:0 0 0 1px rgba(212,175,55,.5) inset, 0 16px 32px -14px rgba(212,175,55,.28); }
+.gframe:hover img{ transform:scale(1.06); }
 @media (max-width:640px){
   .gallery-scroll{ padding-left:calc(50% - 100px); }
   .gallery-scroll::after{ flex-basis:calc(50% - 100px); }
@@ -237,7 +248,7 @@ section{ padding:88px 0; border-top:1px solid var(--line); }
   display:flex; align-items:center; justify-content:center; flex-shrink:0;
 }
 .contact-label{ font-size:12px; color:var(--ink-soft); font-family:var(--mono); }
-.contact-value{ font-weight:600; margin-top:2px; }
+.contact-value{ font-weight:600; margin-top:2px; color:var(--accent-bright); }
 
 /* ---------- Scroll rail — snipping scissors as scroll progress ---------- */
 .scroll-rail{
