@@ -185,41 +185,39 @@ section{ padding:88px 0; border-top:1px solid var(--line); }
 }
 
 .gallery-scroll{
-  display:flex; align-items:flex-start; gap:20px; overflow-x:auto; overflow-y:hidden;
-  padding:10px 6px 26px; margin:0 -6px;
-  scroll-snap-type:x proximity;
+  display:flex; align-items:center; gap:16px; overflow-x:auto; overflow-y:hidden;
+  padding:40px 6px 40px calc(50% - 120px); margin:0 -6px;
+  scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:thin; scrollbar-color:var(--line) transparent;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 26px,#000 calc(100% - 26px),transparent 100%);
   mask-image:linear-gradient(90deg,transparent 0,#000 26px,#000 calc(100% - 26px),transparent 100%);
 }
+.gallery-scroll::after{ content:""; flex:0 0 calc(50% - 120px); }
 .gallery-scroll::-webkit-scrollbar{ height:5px; }
 .gallery-scroll::-webkit-scrollbar-thumb{ background:var(--line); border-radius:8px; }
 
 .gframe{
-  flex:0 0 auto; width:min(58vw,240px); aspect-ratio:3/4;
+  flex:0 0 auto; width:240px; aspect-ratio:3/4;
   border-radius:50% / 42%;
   overflow:hidden; position:relative;
   border:1px solid var(--line);
   scroll-snap-align:center;
   box-shadow:0 1px 0 var(--white) inset;
-  transition:transform .3s ease, box-shadow .3s ease;
-  opacity:0; transform:translateY(18px);
+  transition:transform .35s cubic-bezier(.22,.68,0,1.2), opacity .35s ease, box-shadow .35s ease;
+  opacity:0; transform:translateY(18px) scale(.8);
+  will-change:transform, opacity;
 }
-.gframe.in-view{ opacity:1; transform:translateY(0); transition:opacity .6s ease, transform .6s ease, box-shadow .3s ease; }
-
-/* every 3rd frame sits larger and offset — breaks the "all in a row" feel */
-.gframe:nth-child(3n){ width:min(64vw,270px); margin-top:34px; }
-.gframe:nth-child(3n+2){ margin-top:14px; }
+.gframe.in-view{ opacity:1; }
 
 .gframe img{
   width:100%; height:100%; object-fit:cover;
   transition:transform .5s ease;
 }
-.gframe:hover{ transform:translateY(-6px); box-shadow:0 14px 26px -14px rgba(23,24,26,.35); }
-.gframe:hover img{ transform:scale(1.06); }
-@media (max-width:700px){
-  .gframe:nth-child(3n),.gframe:nth-child(3n+2){ margin-top:0; }
+@media (max-width:640px){
+  .gallery-scroll{ padding-left:calc(50% - 100px); }
+  .gallery-scroll::after{ flex-basis:calc(50% - 100px); }
+  .gframe{ width:200px; }
 }
 
 /* ---------- Booking ---------- */
@@ -269,20 +267,14 @@ section{ padding:88px 0; border-top:1px solid var(--line); }
 }
 .scissors{
   position:absolute; left:50%; top:0; transform:translate(-50%,-50%);
-  width:26px; height:26px; color:var(--ink);
+  width:30px; height:30px; color:var(--ink);
   filter:drop-shadow(0 1px 2px rgba(0,0,0,.25));
 }
-.scissors .blade{ transform-origin:4px 13px; transition:transform .15s ease; }
-.scissors .blade.top{ transform:rotate(0deg); }
-.scissors .blade.bottom{ transform:rotate(0deg); }
-.scissors.snip .blade.top{ animation:snip-top .38s ease; }
-.scissors.snip .blade.bottom{ animation:snip-bottom .38s ease; }
-@keyframes snip-top{ 0%{transform:rotate(0deg);} 50%{transform:rotate(-16deg);} 100%{transform:rotate(0deg);} }
-@keyframes snip-bottom{ 0%{transform:rotate(0deg);} 50%{transform:rotate(16deg);} 100%{transform:rotate(0deg);} }
+#bladeA, #bladeB{ transform-box:view-box; }
 
 @media (max-width:640px){
   .scroll-rail{ right:6px; }
-  .scissors{ width:20px; height:20px; }
+  .scissors{ width:24px; height:24px; }
 }
 @media (prefers-reduced-motion: reduce){
   .scroll-rail{ display:none; }

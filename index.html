@@ -21,11 +21,15 @@
 <body>
 
 <div class="scroll-rail" aria-hidden="true">
-  <svg class="scissors" id="scissors" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle class="blade top" cx="4" cy="6" r="2.1" stroke="currentColor" stroke-width="1.6"/>
-    <circle class="blade bottom" cx="4" cy="18" r="2.1" stroke="currentColor" stroke-width="1.6"/>
-    <path class="blade top" d="M5.6 7.4L20 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-    <path class="blade bottom" d="M5.6 16.6L20 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  <svg class="scissors" id="scissors" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g id="bladeA">
+      <path d="M10 2 L16 13 L22 27" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="22" cy="27" r="3.4" stroke="currentColor" stroke-width="2.2" fill="var(--bg)"/>
+    </g>
+    <g id="bladeB">
+      <path d="M22 2 L16 13 L10 27" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="10" cy="27" r="3.4" stroke="currentColor" stroke-width="2.2" fill="var(--bg)"/>
+    </g>
   </svg>
 </div>
 
