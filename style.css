@@ -220,28 +220,12 @@ section{ padding:88px 0; border-top:1px solid var(--line); }
   .gframe{ width:200px; }
 }
 
-/* ---------- Booking ---------- */
-.booking-inner{
-  display:grid; grid-template-columns:.9fr 1.3fr; gap:40px; align-items:start;
-}
-@media (max-width:860px){ .booking-inner{ grid-template-columns:1fr; } }
-.booking-meta{ font-size:15px; color:var(--ink-soft); margin-top:14px; max-width:34ch; }
+/* ---------- Contact ---------- */
 .hours-badge{
-  display:inline-flex; gap:10px; align-items:center; margin-top:20px;
+  display:inline-flex; gap:10px; align-items:center; margin-top:18px;
   font-family:var(--mono); font-size:13px; background:var(--bg-soft);
   border:1px solid var(--line); border-radius:999px; padding:9px 16px;
 }
-.cal-embed{
-  background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
-  min-height:520px; display:flex; align-items:center; justify-content:center;
-  text-align:center; padding:32px; color:var(--ink-soft); font-size:14px;
-}
-.cal-embed code{
-  display:block; margin-top:12px; background:var(--bg-soft); padding:10px 12px;
-  border-radius:8px; font-size:12px; text-align:left; direction:ltr;
-}
-
-/* ---------- Contact ---------- */
 .contact-inner{ display:flex; flex-wrap:wrap; gap:16px; margin-top:36px; }
 .contact-card{
   flex:1 1 240px; display:flex; align-items:center; gap:16px;
