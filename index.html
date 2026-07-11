@@ -8,7 +8,7 @@
 
 <!-- PWA -->
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#D4AF37">
+<meta name="theme-color" content="#0A0A0A">
 <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">
@@ -24,20 +24,20 @@
   <svg class="scissors" id="scissors" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="bladeA">
       <path d="M10 2 L16 13 L22 27" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="22" cy="27" r="3.4" stroke="currentColor" stroke-width="2.2" fill="var(--bg)"/>
+      <circle cx="22" cy="27" r="3.4" stroke="currentColor" stroke-width="2.2"/>
     </g>
     <g id="bladeB">
       <path d="M22 2 L16 13 L10 27" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="10" cy="27" r="3.4" stroke="currentColor" stroke-width="2.2" fill="var(--bg)"/>
+      <circle cx="10" cy="27" r="3.4" stroke="currentColor" stroke-width="2.2"/>
     </g>
   </svg>
 </div>
 
-<header class="nav">
+<header class="nav" id="siteNav">
   <div class="container">
-    <div class="brand">RAMIN&nbsp;GHORBANI</div>
+    <div class="brand">Ramin</div>
     <ul class="nav-links">
-      <li><a href="#home" data-i18n="nav_home">Start</a></li>
+      <li><a href="#about" data-i18n="nav_home">Start</a></li>
       <li><a href="#services" data-i18n="nav_services">Leistungen</a></li>
       <li><a href="#gallery" data-i18n="nav_gallery">Galerie</a></li>
       <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
@@ -52,26 +52,40 @@
   <div class="hero-media"><img src="assets/img/hero.jpg" alt="Ramin Ghorbani Barber Portfolio"></div>
   <div class="hero-content">
     <div class="hero-inner">
-      <div class="eyebrow" data-i18n="hero_kicker">BARBIER · PRÄZISIONSSCHNITTE</div>
-      <h1 class="hero-title" data-i18n="hero_title">RAMIN
-GHORBANI</h1>
+      <span class="eyebrow" data-i18n="hero_kicker">BARBIER · PRÄZISIONSSCHNITTE</span>
+      <h1 class="hero-title">Ramin<span class="accent">Ghorbani</span></h1>
       <p class="hero-sub" data-i18n="hero_sub">Klare Linien. Saubere Fades. Handwerk, dem man vertraut.</p>
-      <a href="tel:+4915566971317" class="btn btn-primary" data-i18n="hero_cta">Jetzt anrufen</a>
+      <a href="tel:+4915566971317" class="btn btn-primary"><span class="btn-dot"></span><span data-i18n="hero_cta">Jetzt anrufen</span></a>
     </div>
+  </div>
+  <div class="scroll-cue">
+    <span data-i18n="scroll_label">Scrollen</span>
+    <div class="stem"></div>
   </div>
 </section>
 
-<section class="about" id="about">
+<section class="about reveal" id="about">
+  <div class="measure-line"></div>
   <div class="container">
-    <div class="eyebrow" data-i18n="about_title">Über mich</div>
-    <p class="about-text reveal" data-i18n="about_text">
-      Ich bin Ramin Ghorbani, Barbier mit Fokus auf präzise Fades, klare Konturen und modernen Herrenschnitt.
-      Jeder Schnitt wird individuell auf Kopfform, Haarstruktur und Stil abgestimmt.
-    </p>
+    <span class="eyebrow" data-i18n="kicker_about">001 — ÜBER MICH</span>
+    <div class="about-grid">
+      <div>
+        <h2 class="about-quote"><span data-i18n="about_quote1">Ein guter Schnitt ist kein Zufall.</span><br><span class="accent" data-i18n="about_quote2">Er ist Handwerk.</span></h2>
+        <p class="about-text" data-i18n="about_text">
+          Ich bin Ramin Ghorbani, Barbier mit Fokus auf präzise Fades, klare Konturen und modernen Herrenschnitt.
+          Jeder Schnitt wird individuell auf Kopfform, Haarstruktur und Stil abgestimmt.
+        </p>
+      </div>
+      <div class="about-photos">
+        <img src="assets/img/gallery-05.jpg" alt="Ramin Ghorbani at work" loading="lazy">
+      </div>
+    </div>
+    <div class="stat-row" id="statRow" hidden></div>
   </div>
 </section>
 
 <section class="services" id="services">
+  <div class="measure-line"></div>
   <div class="container">
     <div class="services-head">
       <h2 class="section-title" data-i18n="services_title">Leistungen</h2>
@@ -99,11 +113,12 @@ GHORBANI</h1>
 </section>
 
 <section class="gallery" id="gallery">
+  <div class="measure-line"></div>
   <div class="container">
     <div class="gallery-head">
       <div>
+        <span class="eyebrow" data-i18n="kicker_portfolio">002 — PORTFOLIO</span>
         <h2 class="section-title" data-i18n="gallery_title">Galerie</h2>
-        <p class="gallery-sub" data-i18n="gallery_sub">Eine Auswahl aktueller Arbeiten</p>
       </div>
       <div class="gallery-hint">
         <span data-i18n="gallery_hint">Zum Entdecken wischen</span>
@@ -111,22 +126,33 @@ GHORBANI</h1>
       </div>
     </div>
     <div class="gallery-scroll" id="galleryScroll">
-      <div class="gframe"><img src="assets/img/gallery-01.jpg" loading="lazy" alt="Barber work sample 1"></div>
-      <div class="gframe"><img src="assets/img/gallery-02.jpg" loading="lazy" alt="Barber work sample 2"></div>
-      <div class="gframe"><img src="assets/img/gallery-03.jpg" loading="lazy" alt="Barber work sample 3"></div>
-      <div class="gframe"><img src="assets/img/gallery-04.jpg" loading="lazy" alt="Barber work sample 4"></div>
-      <div class="gframe"><img src="assets/img/gallery-05.jpg" loading="lazy" alt="Barber work sample 5"></div>
-      <div class="gframe"><img src="assets/img/gallery-06.jpg" loading="lazy" alt="Barber work sample 6"></div>
-      <div class="gframe"><img src="assets/img/gallery-07.jpg" loading="lazy" alt="Barber work sample 7"></div>
-      <div class="gframe"><img src="assets/img/gallery-08.jpg" loading="lazy" alt="Barber work sample 8"></div>
-      <div class="gframe"><img src="assets/img/gallery-09.jpg" loading="lazy" alt="Barber work sample 9"></div>
-      <div class="gframe"><img src="assets/img/gallery-10.jpg" loading="lazy" alt="Barber work sample 10"></div>
+      <div class="gframe"><img src="assets/img/gallery-01.jpg" loading="lazy" alt="Barber work sample 1"><span class="gnum">01</span></div>
+      <div class="gframe"><img src="assets/img/gallery-02.jpg" loading="lazy" alt="Barber work sample 2"><span class="gnum">02</span></div>
+      <div class="gframe"><img src="assets/img/gallery-03.jpg" loading="lazy" alt="Barber work sample 3"><span class="gnum">03</span></div>
+      <div class="gframe"><img src="assets/img/gallery-04.jpg" loading="lazy" alt="Barber work sample 4"><span class="gnum">04</span></div>
+      <div class="gframe"><img src="assets/img/gallery-05.jpg" loading="lazy" alt="Barber work sample 5"><span class="gnum">05</span></div>
+      <div class="gframe"><img src="assets/img/gallery-06.jpg" loading="lazy" alt="Barber work sample 6"><span class="gnum">06</span></div>
+      <div class="gframe"><img src="assets/img/gallery-07.jpg" loading="lazy" alt="Barber work sample 7"><span class="gnum">07</span></div>
+      <div class="gframe"><img src="assets/img/gallery-08.jpg" loading="lazy" alt="Barber work sample 8"><span class="gnum">08</span></div>
+      <div class="gframe"><img src="assets/img/gallery-09.jpg" loading="lazy" alt="Barber work sample 9"><span class="gnum">09</span></div>
+      <div class="gframe"><img src="assets/img/gallery-10.jpg" loading="lazy" alt="Barber work sample 10"><span class="gnum">10</span></div>
     </div>
   </div>
 </section>
 
-<section class="contact" id="contact">
+<section class="testimonials" id="testimonials" hidden>
+  <div class="measure-line"></div>
   <div class="container">
+    <span class="eyebrow" data-i18n="testimonials_kicker">004 — STIMMEN</span>
+    <h2 class="section-title" data-i18n="testimonials_title">Was Kunden sagen</h2>
+    <div class="testimonials-grid" id="testimonialsGrid"></div>
+  </div>
+</section>
+
+<section class="contact reveal" id="contact">
+  <div class="measure-line"></div>
+  <div class="container">
+    <span class="eyebrow" data-i18n="kicker_contact">003 — KONTAKT</span>
     <h2 class="section-title" data-i18n="contact_title">Kontakt</h2>
     <div class="hours-badge">🕐 <span data-i18n="hours_label">Öffnungszeiten: täglich 09:00 – 19:00 Uhr</span></div>
     <div class="contact-inner">
@@ -157,8 +183,35 @@ GHORBANI</h1>
 
 <footer>
   <div class="container">
-    <div>RAMIN GHORBANI</div>
-    <div><span data-i18n="footer_rights">Alle Rechte vorbehalten.</span> © <span id="year"></span></div>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Ramin Ghorbani</div>
+        <p class="footer-tagline" data-i18n="hero_sub">Klare Linien. Saubere Fades. Handwerk, dem man vertraut.</p>
+      </div>
+      <div>
+        <span class="footer-label" data-i18n="footer_nav">NAVIGATION</span>
+        <div class="footer-links">
+          <a href="#about" data-i18n="nav_home">Start</a>
+          <a href="#services" data-i18n="nav_services">Leistungen</a>
+          <a href="#gallery" data-i18n="nav_gallery">Galerie</a>
+        </div>
+      </div>
+      <div>
+        <span class="footer-label" data-i18n="footer_contact">KONTAKT</span>
+        <a class="footer-contact-item" href="tel:+4915566971317">📞 +49 155 6697 1317</a>
+        <a class="footer-contact-item" href="https://wa.me/4915566971317" target="_blank" rel="noopener">💬 WhatsApp</a>
+      </div>
+      <div>
+        <span class="footer-label" data-i18n="footer_social">SOCIAL</span>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/ramin_zd1000?igsh=ZTJ1ZmY5NWV2anl6" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+          <a href="https://wa.me/4915566971317" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer_rights">Alle Rechte vorbehalten.</span>&nbsp;© <span id="year"></span> Ramin Ghorbani
+    </div>
   </div>
 </footer>
 

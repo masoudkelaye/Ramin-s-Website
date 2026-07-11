@@ -1,0 +1,65 @@
+/* admin.css — extends style.css tokens for the admin dashboard */
+
+.admin-body{ background:var(--bg); min-height:100vh; }
+
+.admin-login{
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  padding:24px;
+}
+.admin-login-box{
+  width:100%; max-width:360px; border:1px solid var(--line); background:var(--surface);
+  padding:36px 30px; text-align:center;
+}
+.admin-hint{ font-size:13px; color:var(--ink-faint); margin:0 0 18px; line-height:1.6; }
+.admin-login input{
+  width:100%; background:var(--bg); border:1px solid var(--line); color:var(--ink);
+  padding:13px 14px; font-family:var(--body); font-size:15px; margin-top:4px;
+}
+.admin-login input:focus{ outline:none; border-color:var(--gold); }
+.admin-error{ color:#FF6B6B; font-size:13px; margin-top:12px; min-height:18px; }
+
+.admin-header{ border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(10,10,10,.92); backdrop-filter:blur(10px); z-index:10; }
+.admin-header-inner{ display:flex; align-items:center; justify-content:space-between; height:76px; }
+
+.admin-main{ padding:48px 24px 100px; }
+.admin-card{ border:1px solid var(--line); background:var(--surface); padding:28px 26px; margin-bottom:28px; }
+.admin-card-title{ font-family:var(--display); font-style:italic; font-size:26px; font-weight:400; margin:0 0 8px; }
+
+.admin-stats-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:18px; }
+@media (max-width:760px){ .admin-stats-grid{ grid-template-columns:1fr 1fr; } }
+.admin-stat-field input{
+  width:100%; background:var(--bg); border:1px solid var(--line); color:var(--ink);
+  padding:10px 12px; font-family:var(--body); font-size:14px; margin-bottom:8px;
+}
+.admin-stat-field input:focus{ outline:none; border-color:var(--gold); }
+.admin-stat-field label{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--ink-faint); text-transform:uppercase; display:block; margin-bottom:4px; }
+
+.admin-testimonials-list{ margin-top:18px; display:flex; flex-direction:column; gap:16px; }
+.admin-testimonial-card{ border:1px solid var(--line); padding:18px; background:var(--bg); }
+.admin-testimonial-row{ display:grid; grid-template-columns:1fr 1fr 100px; gap:10px; margin-bottom:10px; }
+@media (max-width:700px){ .admin-testimonial-row{ grid-template-columns:1fr; } }
+.admin-testimonial-card input, .admin-testimonial-card textarea, .admin-testimonial-card select{
+  width:100%; background:var(--surface); border:1px solid var(--line); color:var(--ink);
+  padding:10px 12px; font-family:var(--body); font-size:14px;
+}
+.admin-testimonial-card textarea{ resize:vertical; min-height:64px; }
+.admin-testimonial-card input:focus, .admin-testimonial-card textarea:focus, .admin-testimonial-card select:focus{ outline:none; border-color:var(--gold); }
+.admin-remove-btn{
+  font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:#FF6B6B; background:none; border:1px solid rgba(255,107,107,.4); padding:8px 14px;
+  cursor:pointer; margin-top:6px; transition:background .2s ease;
+}
+.admin-remove-btn:hover{ background:rgba(255,107,107,.1); }
+
+.admin-photo-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:16px; margin-top:18px; }
+.admin-photo-slot{ text-align:center; }
+.admin-photo-slot img{ width:100%; aspect-ratio:3/4; object-fit:cover; border:1px solid var(--line); filter:grayscale(60%); }
+.admin-photo-slot label{ font-family:var(--mono); font-size:10px; color:var(--ink-faint); display:block; margin:8px 0 6px; }
+.admin-photo-slot input[type="file"]{ font-size:11px; color:var(--ink-soft); width:100%; }
+
+.admin-save-bar{
+  position:sticky; bottom:0; margin-top:8px; padding:18px 26px;
+  background:rgba(10,10,10,.92); backdrop-filter:blur(10px); border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+}
+button{ font-family:var(--mono); cursor:pointer; }

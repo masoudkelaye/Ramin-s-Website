@@ -1,0 +1,9 @@
+{
+  "name": "ramin-ghorbani-barber-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static site + admin panel (Vercel serverless functions) for Ramin Ghorbani Barber.",
+  "engines": {
+    "node": ">=18"
+  }
+}

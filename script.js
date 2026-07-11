@@ -45,6 +45,67 @@
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  // ---------- Dynamic content: stats + testimonials (editable via /admin) ----------
+  (async function loadDynamicContent() {
+    try {
+      const res = await fetch("data/content.json", { cache: "no-store" });
+      if (!res.ok) return;
+      const data = await res.json();
+
+      // Stats — show the row only if at least one stat has both a value and a label
+      const stats = (data.stats || []).filter((s) => s && s.value && s.label);
+      const statRow = document.getElementById("statRow");
+      if (statRow && stats.length > 0) {
+        statRow.innerHTML = stats
+          .map(
+            (s) => `
+          <div>
+            <div class="stat-value">${escapeHtml(s.value)}</div>
+            <div class="stat-label">${escapeHtml(s.label)}</div>
+          </div>`
+          )
+          .join("");
+        statRow.hidden = false;
+      }
+
+      // Testimonials — show the section only if at least one exists
+      const testimonials = (data.testimonials || []).filter((t) => t && t.quote);
+      const section = document.getElementById("testimonials");
+      const grid = document.getElementById("testimonialsGrid");
+      if (section && grid && testimonials.length > 0) {
+        grid.innerHTML = testimonials
+          .map((t) => {
+            const rating = Math.max(1, Math.min(5, Number(t.rating) || 5));
+            return `
+          <div class="t-card">
+            <div class="t-stars">${"★".repeat(rating)}${"☆".repeat(5 - rating)}</div>
+            <p class="t-quote">"${escapeHtml(t.quote)}"</p>
+            <div class="t-name">${escapeHtml(t.name || "")}</div>
+            ${t.role ? `<div class="t-role">${escapeHtml(t.role)}</div>` : ""}
+          </div>`;
+          })
+          .join("");
+        section.hidden = false;
+      }
+    } catch (e) {
+      /* content.json not reachable yet — sections stay hidden */
+    }
+  })();
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  }
+
+  // ---------- Nav: subtle background/border once scrolled ----------
+  const siteNav = document.getElementById("siteNav");
+  if (siteNav) {
+    const onNavScroll = () => {
+      siteNav.classList.toggle("scrolled", window.scrollY > 40);
+    };
+    window.addEventListener("scroll", onNavScroll, { passive: true });
+    onNavScroll();
+  }
+
   // ---------- Scroll-progress "snipping" scissors (real open/close via JS) ----------
   const rail = document.querySelector(".scroll-rail");
   const scissors = document.getElementById("scissors");
