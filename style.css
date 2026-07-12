@@ -217,6 +217,62 @@ section{ padding:96px 0; position:relative; }
 }
 .service-desc{ margin-top:16px; font-size:15px; opacity:.75; max-width:34ch; }
 
+/* ---------- Equipment breakout (full-bleed) ---------- */
+.equipment{
+  position:relative; min-height:72vh; display:flex; align-items:center;
+  padding:0; overflow:hidden; border-top:1px solid var(--line);
+}
+.equipment-bg{ position:absolute; inset:0; z-index:0; }
+.equipment-bg img{ width:100%; height:100%; object-fit:cover; }
+.equipment-bg::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.35) 40%, rgba(10,10,10,.85) 100%);
+}
+.equipment-overlay{ position:relative; z-index:1; padding:90px 0; width:100%; }
+.equipment-title{
+  font-family:var(--display); font-style:italic; font-weight:400;
+  font-size:clamp(36px,6vw,64px); line-height:1.08; margin:16px 0 20px; color:var(--ink);
+}
+.equipment-title .accent{ color:var(--gold); }
+.equipment-sub{ font-size:clamp(14px,1.6vw,17px); color:var(--ink-soft); max-width:46ch; }
+
+/* ---------- Marquee ---------- */
+.marquee{
+  background:var(--gold); color:var(--on-gold); overflow:hidden; white-space:nowrap;
+  padding:14px 0;
+}
+.marquee-track{
+  display:inline-flex; gap:18px; animation:marquee-scroll 22s linear infinite;
+  font-family:var(--mono); font-size:13px; letter-spacing:.2em; font-weight:500;
+}
+.marquee-track span{ flex:0 0 auto; }
+@keyframes marquee-scroll{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce){
+  .marquee-track{ animation:none; }
+}
+
+/* ---------- Equipment photo strip ---------- */
+.equip-strip{ padding:64px 0; border-top:1px solid var(--line); }
+.equip-strip-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); }
+@media (max-width:760px){ .equip-strip-grid{ grid-template-columns:1fr; } }
+.equip-strip-grid figure{ margin:0; background:var(--bg); position:relative; overflow:hidden; aspect-ratio:4/5; }
+.equip-strip-grid img{
+  width:100%; height:100%; object-fit:cover; transition:transform .6s ease;
+}
+.equip-strip-grid figure:hover img{ transform:scale(1.06); }
+.equip-strip-grid figcaption{
+  position:absolute; left:16px; bottom:14px; z-index:2;
+  font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink);
+}
+.equip-strip-grid figure::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(0deg, rgba(10,10,10,.75) 0%, transparent 45%);
+}
+
 /* ---------- Gallery ---------- */
 .gallery{ border-top:1px solid var(--line); overflow:hidden; }
 .gallery-head{
