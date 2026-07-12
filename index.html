@@ -136,16 +136,46 @@
       <div class="gframe"><img src="assets/img/gallery-08.jpg" loading="lazy" alt="Barber work sample 8"><span class="gnum">08</span></div>
       <div class="gframe"><img src="assets/img/gallery-09.jpg" loading="lazy" alt="Barber work sample 9"><span class="gnum">09</span></div>
       <div class="gframe"><img src="assets/img/gallery-10.jpg" loading="lazy" alt="Barber work sample 10"><span class="gnum">10</span></div>
+      <div class="gframe"><img src="assets/img/gallery-11.jpg" loading="lazy" alt="Barbershop tools and workstation"><span class="gnum">11</span></div>
+      <div class="gframe"><img src="assets/img/gallery-12.jpg" loading="lazy" alt="Barbershop interior view"><span class="gnum">12</span></div>
+      <div class="gframe"><img src="assets/img/gallery-13.jpg" loading="lazy" alt="Styling detail work"><span class="gnum">13</span></div>
     </div>
   </div>
 </section>
 
-<section class="testimonials" id="testimonials" hidden>
+<section class="testimonials" id="testimonials">
   <div class="measure-line"></div>
   <div class="container">
-    <span class="eyebrow" data-i18n="testimonials_kicker">004 — STIMMEN</span>
+    <span class="eyebrow" data-i18n="testimonials_kicker">003 — STIMMEN</span>
     <h2 class="section-title" data-i18n="testimonials_title">Was Kunden sagen</h2>
+
     <div class="testimonials-grid" id="testimonialsGrid"></div>
+    <p class="admin-hint-public" id="testimonialsEmpty" data-i18n="testimonials_empty" hidden>Noch keine Bewertungen — sei der Erste!</p>
+
+    <div class="review-form-wrap">
+      <h3 class="review-form-title" data-i18n="review_form_title">Deine Erfahrung teilen</h3>
+      <form id="reviewForm" class="review-form">
+        <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="review-form-row">
+          <input type="text" id="rvName" name="name" required maxlength="60" data-i18n-placeholder="review_name_placeholder" placeholder="Dein Name">
+          <input type="text" id="rvRole" name="role" maxlength="60" data-i18n-placeholder="review_role_placeholder" placeholder="z. B. Kunde (optional)">
+        </div>
+        <div class="review-form-row">
+          <select id="rvRating" name="rating">
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★☆</option>
+            <option value="3">★★★☆☆</option>
+            <option value="2">★★☆☆☆</option>
+            <option value="1">★☆☆☆☆</option>
+          </select>
+        </div>
+        <textarea id="rvQuote" name="quote" required maxlength="500" rows="4" data-i18n-placeholder="review_quote_placeholder" placeholder="Wie war dein Termin?"></textarea>
+        <button type="submit" class="btn btn-primary" id="reviewSubmitBtn">
+          <span class="btn-dot"></span><span data-i18n="review_submit">Bewertung abschicken</span>
+        </button>
+        <p id="reviewStatus" class="review-status"></p>
+      </form>
+    </div>
   </div>
 </section>
 

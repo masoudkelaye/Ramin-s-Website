@@ -23,6 +23,13 @@
       }
     });
 
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-placeholder");
+      if (dict[key] !== undefined) {
+        el.setAttribute("placeholder", dict[key]);
+      }
+    });
+
     select.value = code;
     localStorage.setItem("ramin_lang", code);
   }
@@ -46,51 +53,120 @@
   document.getElementById("year").textContent = new Date().getFullYear();
 
   // ---------- Dynamic content: stats + testimonials (editable via /admin) ----------
-  (async function loadDynamicContent() {
+  async function loadDynamicContent() {
     try {
       const res = await fetch("data/content.json", { cache: "no-store" });
       if (!res.ok) return;
       const data = await res.json();
-
-      // Stats — show the row only if at least one stat has both a value and a label
-      const stats = (data.stats || []).filter((s) => s && s.value && s.label);
-      const statRow = document.getElementById("statRow");
-      if (statRow && stats.length > 0) {
-        statRow.innerHTML = stats
-          .map(
-            (s) => `
-          <div>
-            <div class="stat-value">${escapeHtml(s.value)}</div>
-            <div class="stat-label">${escapeHtml(s.label)}</div>
-          </div>`
-          )
-          .join("");
-        statRow.hidden = false;
-      }
-
-      // Testimonials — show the section only if at least one exists
-      const testimonials = (data.testimonials || []).filter((t) => t && t.quote);
-      const section = document.getElementById("testimonials");
-      const grid = document.getElementById("testimonialsGrid");
-      if (section && grid && testimonials.length > 0) {
-        grid.innerHTML = testimonials
-          .map((t) => {
-            const rating = Math.max(1, Math.min(5, Number(t.rating) || 5));
-            return `
-          <div class="t-card">
-            <div class="t-stars">${"★".repeat(rating)}${"☆".repeat(5 - rating)}</div>
-            <p class="t-quote">"${escapeHtml(t.quote)}"</p>
-            <div class="t-name">${escapeHtml(t.name || "")}</div>
-            ${t.role ? `<div class="t-role">${escapeHtml(t.role)}</div>` : ""}
-          </div>`;
-          })
-          .join("");
-        section.hidden = false;
-      }
+      renderStats(data.stats || []);
+      renderTestimonials(data.testimonials || []);
     } catch (e) {
-      /* content.json not reachable yet — sections stay hidden */
+      /* content.json not reachable yet — sections stay empty */
     }
-  })();
+  }
+
+  function renderStats(rawStats) {
+    const stats = rawStats.filter((s) => s && s.value && s.label);
+    const statRow = document.getElementById("statRow");
+    if (!statRow || stats.length === 0) return;
+    statRow.innerHTML = stats
+      .map(
+        (s) => `
+      <div>
+        <div class="stat-value">${escapeHtml(s.value)}</div>
+        <div class="stat-label">${escapeHtml(s.label)}</div>
+      </div>`
+      )
+      .join("");
+    statRow.hidden = false;
+  }
+
+  function renderTestimonials(rawTestimonials) {
+    const testimonials = rawTestimonials.filter((t) => t && t.quote);
+    const grid = document.getElementById("testimonialsGrid");
+    const emptyMsg = document.getElementById("testimonialsEmpty");
+    if (!grid) return;
+
+    if (testimonials.length === 0) {
+      grid.innerHTML = "";
+      if (emptyMsg) emptyMsg.hidden = false;
+      return;
+    }
+    if (emptyMsg) emptyMsg.hidden = true;
+
+    grid.innerHTML = testimonials
+      .slice()
+      .reverse()
+      .map((t) => {
+        const rating = Math.max(1, Math.min(5, Number(t.rating) || 5));
+        return `
+      <div class="t-card">
+        <div class="t-stars">${"★".repeat(rating)}${"☆".repeat(5 - rating)}</div>
+        <p class="t-quote">"${escapeHtml(t.quote)}"</p>
+        <div class="t-name">${escapeHtml(t.name || "")}</div>
+        ${t.role ? `<div class="t-role">${escapeHtml(t.role)}</div>` : ""}
+      </div>`;
+      })
+      .join("");
+  }
+
+  loadDynamicContent();
+
+  // ---------- Public review submission form ----------
+  const reviewForm = document.getElementById("reviewForm");
+  if (reviewForm) {
+    reviewForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const statusEl = document.getElementById("reviewStatus");
+      const submitBtn = document.getElementById("reviewSubmitBtn");
+      const formData = new FormData(reviewForm);
+      const payload = {
+        website: formData.get("website"), // honeypot
+        name: formData.get("name"),
+        role: formData.get("role"),
+        rating: formData.get("rating"),
+        quote: formData.get("quote"),
+      };
+
+      if (!payload.name || !payload.quote || payload.name.trim().length < 2 || payload.quote.trim().length < 5) {
+        statusEl.textContent = currentLangDict().review_error_validation || "Bitte Name und Text ausfüllen.";
+        statusEl.className = "review-status error";
+        return;
+      }
+
+      submitBtn.disabled = true;
+      statusEl.textContent = "";
+      statusEl.className = "review-status";
+
+      try {
+        const res = await fetch("api/submit-review", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+          statusEl.textContent = currentLangDict().review_success || "Danke für deine Bewertung!";
+          statusEl.className = "review-status success";
+          reviewForm.reset();
+          loadDynamicContent();
+        } else {
+          statusEl.textContent = data.error || currentLangDict().review_error_generic || "Etwas ist schiefgelaufen.";
+          statusEl.className = "review-status error";
+        }
+      } catch (err) {
+        statusEl.textContent = currentLangDict().review_error_generic || "Etwas ist schiefgelaufen.";
+        statusEl.className = "review-status error";
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  }
+
+  function currentLangDict() {
+    const lang = document.documentElement.lang;
+    return I18N[lang] || I18N[DEFAULT_LANG];
+  }
 
   function escapeHtml(str) {
     return String(str).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));

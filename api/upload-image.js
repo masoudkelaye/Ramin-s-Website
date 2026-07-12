@@ -4,7 +4,7 @@
 // Uses the same environment variables as api/content.js.
 
 const GITHUB_API = "https://api.github.com";
-const ALLOWED_FILENAME = /^(hero|gallery-(0[1-9]|10))\.(jpg|jpeg|png|webp)$/i;
+const ALLOWED_FILENAME = /^(hero|gallery-(0[1-9]|1[0-3]))\.(jpg|jpeg|png|webp)$/i;
 
 async function githubRequest(path, options = {}) {
   const res = await fetch(`${GITHUB_API}${path}`, {

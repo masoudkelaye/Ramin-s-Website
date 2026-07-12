@@ -21,6 +21,7 @@
     "hero.jpg",
     "gallery-01.jpg", "gallery-02.jpg", "gallery-03.jpg", "gallery-04.jpg", "gallery-05.jpg",
     "gallery-06.jpg", "gallery-07.jpg", "gallery-08.jpg", "gallery-09.jpg", "gallery-10.jpg",
+    "gallery-11.jpg", "gallery-12.jpg", "gallery-13.jpg",
   ];
 
   function showPanel() {
